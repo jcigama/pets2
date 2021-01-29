@@ -18,6 +18,22 @@ $f3->route('GET /', function() {
     echo $view->render('views/pet-home.html');
 });
 
+//Order Route
+$f3->route('GET /order', function() {
+//    echo "My Pets";
+    $view = new Template();
+    echo $view->render('views/pet-order.html');
+});
+
+//Order Route
+$f3->route('POST /order2', function() {
+    echo "<p>POST:</p><BR>";
+    var_dump($_POST);
+//    echo "My Pets";
+//    $view = new Template();
+//    echo $view->render('views/pet-order.html');
+});
+
 
 //Run fat free
 $f3->run();
