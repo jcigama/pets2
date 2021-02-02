@@ -4,6 +4,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//Start a session
+session_start();
+
 //Require the autoload file
 require_once('vendor/autoload.php');
 
@@ -27,17 +30,32 @@ $f3->route('GET /order', function() {
 
 //Order Route
 $f3->route('POST /order2', function() {
+
+    var_dump($_POST);
+
+    if(isset($_POST['pet'])) {
+        $_SESSION['pet'] = $_POST['pet'];
+    }
+
+    if(isset($_POST['colors'])) {
+        $colors = $_POST['colors'];
+        $colorSelected = null;
+        foreach ($colors as $colorsArray) {
+            echo "$colorsArray";
+            $_SESSION['colors'] = $colorsArray;
+        }
+    }
+
     $view = new Template();
     echo $view->render('views/pet-order2.html');
 });
 
 //Summary Route
 $f3->route('POST /summary', function() {
-//    echo "<p>POST:</p><BR>";
-//    var_dump($_POST);
-//    echo "My Pets";
+    var_dump($_SESSION);
+
     $view = new Template();
-    echo $view->render('views/pet-order2.html');
+    echo $view->render('views/order-summary.html');
 });
 
 
