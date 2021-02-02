@@ -53,7 +53,6 @@ $f3->route('POST /order2', function() {
 
 //Summary Route
 $f3->route('POST /summary', function() {
-    var_dump($_POST);
 
     if(isset($_POST['petName']))
     {
