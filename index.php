@@ -31,15 +31,17 @@ $f3->route('GET /order', function() {
 //Order 2 Route
 $f3->route('POST /order2', function() {
 
+    //Verify 'pet' exists in the post array, if so save it to session
     if(isset($_POST['pet'])) {
         $_SESSION['pet'] = $_POST['pet'];
     }
 
+    //Verify 'colors' exists in the post array, if so save it to session
     if(isset($_POST['colors'])) {
         $colors = $_POST['colors'];
         $colorSelected = null;
         foreach ($colors as $colorsArray) {
-            echo "$colorsArray";
+//            echo "$colorsArray";
             $_SESSION['colors'] = $colorsArray;
         }
     }
@@ -67,7 +69,6 @@ $f3->route('GET /order3', function() {
     $view = new Template();
     echo $view->render('views/pet-order3.html');
 });
-
 
 //Run fat free
 $f3->run();
