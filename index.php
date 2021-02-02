@@ -21,14 +21,14 @@ $f3->route('GET /', function() {
     echo $view->render('views/pet-home.html');
 });
 
-//Order Route
+//Order 1 Route
 $f3->route('GET /order', function() {
 //    echo "My Pets";
     $view = new Template();
     echo $view->render('views/pet-order.html');
 });
 
-//Order Route
+//Order 2 Route
 $f3->route('POST /order2', function() {
 
     var_dump($_POST);
@@ -36,6 +36,7 @@ $f3->route('POST /order2', function() {
     if(isset($_POST['pet'])) {
         $_SESSION['pet'] = $_POST['pet'];
     }
+
 
     if(isset($_POST['colors'])) {
         $colors = $_POST['colors'];
@@ -52,10 +53,22 @@ $f3->route('POST /order2', function() {
 
 //Summary Route
 $f3->route('POST /summary', function() {
-    var_dump($_SESSION);
+    var_dump($_POST);
+
+    if(isset($_POST['petName']))
+    {
+        $_SESSION['petName'] = $_POST['petName'];
+    }
 
     $view = new Template();
     echo $view->render('views/order-summary.html');
+});
+
+//Order 3 Route
+$f3->route('GET /order3', function() {
+
+    $view = new Template();
+    echo $view->render('views/pet-order3.html');
 });
 
 
